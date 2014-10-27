@@ -1,5 +1,7 @@
 # google_oauth_flask
 
+[![Build Status](https://travis-ci.org/vistarmedia/google_oauth_flask.svg)](https://travis-ci.org/vistarmedia/google_oauth_flask)
+
 The idea here is that you've got a buncha little flask apps you'd like like to
 restrict access to, perhaps by the domain name of a user's email address.
 
@@ -12,8 +14,8 @@ restrict access to, perhaps by the domain name of a user's email address.
 
 ### example app
 
-python
-```
+```python
+
 import sys
 import logging
 logging.basicConfig(stream=sys.stdout, level=logging.DEBUG)
