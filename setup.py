@@ -1,8 +1,9 @@
 from setuptools import setup
 
 setup(
-  name      = 'google_oauth_flask',
+  name      = 'google-oauth-flask',
   version   = '0.0.1',
+  url       = 'https://github.com/vistarmedia/google_oauth_flask',
   packages  = ['google_oauth_flask'],
 
   install_requires = [

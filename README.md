@@ -12,10 +12,13 @@ restrict access to, perhaps by the domain name of a user's email address.
 * having set up a "project" with oauth credentials and a name (under
   'credentials') at https://console.developers.google.com
 
+### install
+
+`pip install google-oauth-flask`
+
 ### example app
 
 ```python
-
 import sys
 import logging
 logging.basicConfig(stream=sys.stdout, level=logging.DEBUG)
@@ -74,7 +77,6 @@ def restricted():
 if __name__ == "__main__":
   app.run(port=8888, host='0.0.0.0', use_debugger=True, debug=True,
       use_reloader=True)
-
 ```
 
 The `set_oauth_redirect_endpoint` takes your flask app instance and defines a

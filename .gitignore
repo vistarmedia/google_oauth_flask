@@ -1,2 +1,3 @@
+dist
 *.pyc
 google_oauth_flask.egg-info
