@@ -2,6 +2,7 @@ from setuptools import setup
 
 setup(
   name      = 'google-oauth-flask',
+  description = 'A super simple flask decorator for oauth\'ing w/Google.',
   version   = '0.0.1',
   url       = 'https://github.com/vistarmedia/google_oauth_flask',
   packages  = ['google_oauth_flask'],
