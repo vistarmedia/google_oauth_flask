@@ -9,12 +9,11 @@ from flask import request
 from flask import session
 from requests_oauthlib import OAuth2Session
 
-
 from flask import current_app
 
-_auth_state_key = 'oauth_state'
-_oauth_route    = '/_oauth2/authorize'
-user_info_url   = 'https://www.googleapis.com/oauth2/v1/userinfo'
+_auth_state_key       = 'oauth_state'
+_oauth_route          = '/_oauth2/authorize'
+default_user_info_url = 'https://www.googleapis.com/oauth2/v1/userinfo'
 
 
 def set_oauth_redirect_endpoint(app):
@@ -24,10 +23,6 @@ def set_oauth_redirect_endpoint(app):
   @app.route(_oauth_route)
   @oauth_redirect_endpoint(app.config)
   def _oauth2_authorize(user_details):
-    '''
-    - if authenticated, redirects them to the `dest_url` set in their session
-    - if `dest_url` doesn't exist, redirect to '/'
-    '''
     return redirect(session.get('dest_url') or '/')
 
 
@@ -66,6 +61,7 @@ def oauth_user_token(config=None):
     # we provide the known_state to the OAuth2Session constructor *and* use the
     # authorization_response kwarg (which is a url string) with `fetch_token`
     # we're not doing that since authorization_response must have https scheme
+    # or requests_oauthlib barfs out
     abort(403)
 
   client_id       = config['GOOGLE_CONSUMER_KEY']
@@ -98,7 +94,7 @@ def oauth_user_details(token, config=None):
   config        = config or current_app.config
   client_id     = config['GOOGLE_CONSUMER_KEY']
   oauth_session = OAuth2Session(client_id, token=token)
-
+  user_info_url = config.get('OAUTH_USER_INFO_URL') or default_user_info_url
   return oauth_session.get(user_info_url).json()
 
 

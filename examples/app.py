@@ -1,25 +1,3 @@
-# google_oauth_flask
-
-[![Build Status](https://travis-ci.org/vistarmedia/google_oauth_flask.svg)](https://travis-ci.org/vistarmedia/google_oauth_flask)
-
-The idea here is that you've got a buncha little flask apps you'd like like to
-restrict access to, perhaps by the domain name of a user's email address.  This
-is using OAuth as pseudo-authentication, which is probably just fine.
-
-### requirements
-
-* flask app
-* secure session
-* having set up a "project" with oauth credentials and a name (under
-  'credentials') at https://console.developers.google.com
-
-### install
-
-`pip install google-oauth-flask`
-
-### example app
-
-```python
 import os
 import sys
 import logging
@@ -82,14 +60,3 @@ def restricted():
 if __name__ == "__main__":
   app.run(port=8888, host='0.0.0.0', use_debugger=True, debug=True,
       use_reloader=True)
-```
-
-If you leave the `OAUTH_ALLOWED_DOMAINS` option blank, there will be no
-restriction on who is allowed to log in.
-
-The `set_oauth_redirect_endpoint` takes your flask app instance and defines a
-view function for `/_oauth2/authorize` that will redirect to the url the url was
-trying to access before they logged in.
-
-The `login_required` decorator should be used on any view function you'd like to
-restrict access to.
